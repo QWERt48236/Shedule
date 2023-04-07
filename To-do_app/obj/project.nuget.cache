@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Z6QINcgPjbF6QgQ7i7Zp8veJkm3A5EMs6ch6TakmP2IG529UDE+CVt1+A6TVDKj/Ag0zwgExt4tBXuvr+qdDYw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Андрей\\source\\repos\\To-do_app\\To-do_app\\To-do_app.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Андрей\\.nuget\\packages\\litedb\\5.0.16\\litedb.5.0.16.nupkg.sha512"
+  ],
+  "logs": []
+}
