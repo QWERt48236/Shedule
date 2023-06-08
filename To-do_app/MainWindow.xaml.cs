@@ -123,7 +123,7 @@ namespace To_do_app
             {
                 List<String> EventBlock = Chosen_day.EventArr;
 
-                for (int i = 1; i <= Chosen_day.EventArr.Count - 1; i++)
+                for (int i = 0; i <= Chosen_day.EventArr.Count - 1; i++)
                 {
                     TextBlock textBlock = new TextBlock();
                     textBlock.Text = EventBlock[i];
@@ -164,8 +164,8 @@ namespace To_do_app
             {
                 var col = db.GetCollection<DayData>("dayData");
                 DayData Chosen_day = new DayData();
+                Chosen_day.Date = Chosen_date;
                 Chosen_day.EventArr = new List<string>();
-                //db.DropCollection("dayData");
 
                 if (col.FindOne(x => x.Date == Chosen_date) != null) //not remembering the tasks
                 {
@@ -181,8 +181,6 @@ namespace To_do_app
                 }
                 else
                 {
-                    Chosen_day.Date = Chosen_date;
-                    Chosen_day.EventArr = new List<string>();
                     for (int i = 1; i < Stack.Children.Count; i++)
                     {
                         Chosen_day.EventArr.Add((Stack.Children[i] as TextBlock).Text);
@@ -205,6 +203,5 @@ namespace To_do_app
                 ReturnButton.Visibility = Visibility.Collapsed;
             }
         }
-
     }
 }
