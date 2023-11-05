@@ -13,76 +13,21 @@ namespace To_do_app
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public static class Dates
-    {
-        public static string CurrentMonthName()
-        {
-            int month = DateTime.Now.Month;
-            string[] months = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-            return months[month - 1];
-        }
-
-        //returns array of dates (int values) which should appear in calendar grid
-        public static int[] GetDate()
-        {
-            DateTime currentDate = DateTime.Now;
-            int[] dateArr = new int[43];
-            DateTime pastMonth;
-
-            if (currentDate.Month == 1)
-            {
-                pastMonth = new DateTime(currentDate.Year - 1, 12, DateTime.DaysInMonth(currentDate.Year - 1, 12));
-            }
-            else
-            {
-                pastMonth = new DateTime(currentDate.Year, currentDate.Month - 1, DateTime.DaysInMonth(currentDate.Year, currentDate.Month - 1));
-            }
-
-            DateTime firstDayOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
-            int cnt = pastMonth.Day;
-            for (int i = 0; i <= Convert.ToInt32(firstDayOfMonth.DayOfWeek); i++)
-            {
-                dateArr[i] = cnt + i - Convert.ToInt32(firstDayOfMonth.DayOfWeek);
-            }
-
-            cnt = Convert.ToInt32(firstDayOfMonth.DayOfWeek) + 1;
-            for (int i = cnt; i <= cnt + DateTime.DaysInMonth(currentDate.Year, currentDate.Month); i++)
-            {
-                dateArr[i] = i - Convert.ToInt32(firstDayOfMonth.DayOfWeek);
-            }
-
-            cnt = DateTime.DaysInMonth(currentDate.Year, currentDate.Month) + Convert.ToInt32(firstDayOfMonth.DayOfWeek);
-            for (int i = 1; i < 43 - cnt; i++)
-            {
-                dateArr[cnt + i] = i;
-            }
-
-            return dateArr;
-        }
-    }
-
-
-    class DayData
-    {
-        public DateTime Date { get; set; }
-        public List<string> EventArr { get; set; }
-    }
-
 
 
     /// Interaction logic for MainWindow.xaml
     public partial class MainWindow : Window
     {
         private int day;
-
+        private DateTime Current_date;
         public MainWindow()
         {
             InitializeComponent();
-
+            Current_date = DateTime.Now;
             Button[,] Button_arr = new Button[7, 7];
             int cnt = 0;
-            int[] DateArr = Dates.GetDate();
-            for (int i = 1; i < 7; i++)
+            string[] DateArr = Dates.GetDate(Current_date.Month);
+            for (int i = 1; i < 6; i++)
             {
                 for (int j = 0; j < 7; j++)
                 {
@@ -93,15 +38,36 @@ namespace To_do_app
                     Main_Calendar.Children.Add(Button_arr[i, j]);
                 }
             }
-            Year.Text = DateTime.Now.Year.ToString();
-            Month.Text = Dates.CurrentMonthName();
+            Year.Text = Current_date.Year.ToString();
+            Month.Text = Dates.CurrentMonthName(Current_date.Month);
         }
 
+
+
+        private void Last_month(object sender, EventArgs e)
+        {
+            DateTime New_Current_date = new DateTime(Current_date.Year, Current_date.Month - 1, 1);
+            Current_date = New_Current_date;
+            this.Year.Text = New_Current_date.Year.ToString();
+            this.Month.Text = Dates.CurrentMonthName(New_Current_date.Month);
+        }
+
+
+
+        private void Next_month(object sender, EventArgs e)
+        {
+            DateTime Next_month_date = new DateTime(Current_date.Year, Current_date.Month + 1, 1);
+            Current_date = Next_month_date;
+            this.Year.Text = Next_month_date.Year.ToString();
+            this.Month.Text = Dates.CurrentMonthName(Next_month_date.Month);
+        }
 
         private void Go_To_Task_list(object sender, EventArgs e)
         {
 
             Main_Calendar.Visibility = Visibility.Collapsed;
+            Month_back.Visibility = Visibility.Collapsed;
+            Month_forvard.Visibility = Visibility.Collapsed;
             Stack.Visibility = Visibility.Visible;
             ReturnButton.Visibility = Visibility.Visible;
 
@@ -127,10 +93,13 @@ namespace To_do_app
                 {
                     TextBlock textBlock = new TextBlock();
                     textBlock.Text = EventBlock[i];
+                    textBlock.MouseDown += new MouseButtonEventHandler(Event_block_Click);
                     Stack.Children.Add(textBlock);
                 }
             }
         }
+
+
 
 
         private void Event_block_Click(object sender, RoutedEventArgs e)
@@ -140,6 +109,8 @@ namespace To_do_app
             event_Window.Stack = Stack;
             event_Window.Show();
         }
+
+
 
 
         private void Enter_event(object sender, KeyEventArgs e)
@@ -156,6 +127,8 @@ namespace To_do_app
         }
 
 
+
+
         private void Return_to_calendar(object sender, RoutedEventArgs e)
         {
             DateTime Chosen_date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, day);
@@ -167,7 +140,7 @@ namespace To_do_app
                 Chosen_day.Date = Chosen_date;
                 Chosen_day.EventArr = new List<string>();
 
-                if (col.FindOne(x => x.Date == Chosen_date) != null) //not remembering the tasks
+                if (col.FindOne(x => x.Date == Chosen_date) != null)
                 {
                     Chosen_day = col.FindOne(x => x.Date == Chosen_date);
 
@@ -199,6 +172,8 @@ namespace To_do_app
                 Stack.Children.Add(event1);
 
                 Main_Calendar.Visibility = Visibility.Visible;
+                Month_back.Visibility = Visibility.Visible;
+                Month_forvard.Visibility = Visibility.Visible;
                 Stack.Visibility = Visibility.Collapsed;
                 ReturnButton.Visibility = Visibility.Collapsed;
             }
