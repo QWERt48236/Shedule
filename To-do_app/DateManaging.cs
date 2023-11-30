@@ -21,30 +21,40 @@ namespace To_do_app
         /// </summary>
         public static string[] GetDate(int month)
         {
-            
-            DateTime currentDate = DateTime.Now;
-            string[] dateArr = new string[36];
-
+            DateTime currentDate = new DateTime(DateTime.Now.Year, month, DateTime.Now.Day);
+            string[] dateArr = new string[43];
 
             DateTime firstDayOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
 
-
             int cnt = Convert.ToInt32(firstDayOfMonth.DayOfWeek);
-            for (int i = cnt; i < cnt + DateTime.DaysInMonth(currentDate.Year, currentDate.Month); i++)
+            for (int i = cnt; i < cnt + DateTime.DaysInMonth(currentDate.Year, currentDate.Month)+6; i++)
             {
-                dateArr[i] = Convert.ToString(i - Convert.ToInt32(firstDayOfMonth.DayOfWeek) + 1);
+
+                if((i - Convert.ToInt32(firstDayOfMonth.DayOfWeek) - 6) > 0)
+                {
+                    dateArr[i] = Convert.ToString(i - Convert.ToInt32(firstDayOfMonth.DayOfWeek) - 6);
+                }
+                
             }
 
-            cnt = DateTime.DaysInMonth(currentDate.Year, currentDate.Month) + Convert.ToInt32(firstDayOfMonth.DayOfWeek);
-
+            bool check = false;
+            for (int i = 0; i <= 7; i++)
+            {
+                if (dateArr[i] == null) {check = true; }
+                else { check = false; }
+                
+            }
+            if(check) { dateArr = dateArr.Skip(7).ToArray(); }
 
             return dateArr;
         }
+
+
     }
 
 
 
-    class DayData
+    public class DayData
     {
         public DateTime Date { get; set; }
         public List<string> EventArr { get; set; }

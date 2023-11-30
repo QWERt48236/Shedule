@@ -22,15 +22,23 @@
 
         <TextBlock FontSize="30" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="Year"></TextBlock>
         <TextBlock FontSize="30" Grid.Column="2" VerticalAlignment="Center" x:Name="Month" HorizontalAlignment="Center" ></TextBlock>
-        <UniformGrid x:Name="Main_Calendar" Grid.Column ="1" Grid.Row="1" Rows="7" Columns="7" Grid.ColumnSpan="2">
-            <TextBlock FontSize="25">Mon</TextBlock>
-            <TextBlock FontSize="25">Tue</TextBlock>
-            <TextBlock FontSize="25">Wen</TextBlock>
-            <TextBlock FontSize="25">Thu</TextBlock>
-            <TextBlock FontSize="25">Fri</TextBlock>
-            <TextBlock FontSize="25">Sat</TextBlock>
-            <TextBlock FontSize="25">Sun</TextBlock>
-        </UniformGrid>
+        
+        <DockPanel Grid.Column ="1" Grid.Row="1" Grid.ColumnSpan="2">
+            
+            <UniformGrid x:Name="Main_Calendar" DockPanel.Dock="Top" Rows="1" Columns="7">
+                <TextBlock FontSize="25">Mon</TextBlock>
+                <TextBlock FontSize="25">Tue</TextBlock>
+                <TextBlock FontSize="25">Wen</TextBlock>
+                <TextBlock FontSize="25">Thu</TextBlock>
+                <TextBlock FontSize="25">Fri</TextBlock>
+                <TextBlock FontSize="25">Sat</TextBlock>
+                <TextBlock FontSize="25">Sun</TextBlock>
+            </UniformGrid>
+
+            <UniformGrid x:Name="Calendar_Grid" Rows="7" Columns="7"></UniformGrid>
+            
+        </DockPanel>
+        
 
         <Button   x:Name="Month_back" Click="Last_month" Margin ="20" FontSize="30">&lt;</Button>
         <Button   x:Name="Month_forvard" Click="Next_month" Grid.Column="3" Margin ="20" FontSize="30" >&gt;</Button>
