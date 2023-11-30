@@ -349,3 +349,9 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 /To-do_app.sln
+To-do_app/.vs/To-do_app/DesignTimeBuild/.dtbcache.v2
+To-do_app/.vs/To-do_app/DesignTimeBuild/.dtbcache.v2
+To-do_app/.vs/To-do_app/DesignTimeBuild/.dtbcache.v2
+To-do_app/.vs/To-do_app/v17/.futdcache.v2
+To-do_app/.vs/To-do_app/v17/.suo
+*.v2
