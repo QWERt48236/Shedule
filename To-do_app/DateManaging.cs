@@ -19,9 +19,11 @@ namespace To_do_app
         /// <summary>
         /// gets array of dates that will appear in calendar grid
         /// </summary>
+        /// 
+        //DateTime.Now.Day, month, DateTime.Now.Year
         public static string[] GetDate(int month)
         {
-            DateTime currentDate = new DateTime(DateTime.Now.Year, month, DateTime.Now.Day);
+            DateTime currentDate = new DateTime(DateTime.Now.Year, month, 1);
             string[] dateArr = new string[43];
 
             DateTime firstDayOfMonth = new DateTime(currentDate.Year, currentDate.Month, 1);

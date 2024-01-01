@@ -30,7 +30,7 @@ namespace To_do_app
 
             int cnt = 0;
 
-            Update_calendar(Current_date.Month-3);
+            Update_calendar(Current_date.Month);
 
             Year.Text = Current_date.Year.ToString();
             Month.Text = Dates.CurrentMonthName(Current_date.Month);

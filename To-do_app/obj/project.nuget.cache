@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "Z6QINcgPjbF6QgQ7i7Zp8veJkm3A5EMs6ch6TakmP2IG529UDE+CVt1+A6TVDKj/Ag0zwgExt4tBXuvr+qdDYw==",
+  "dgSpecHash": "+3j/CAIfiUU4nVgsmWstEI1q0A7CRgwB6TV3NS8yKtWYRfeisUoff/CbnUCxzf/+oaABfw+vTEcJELXc/XuRPg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Андрей\\source\\repos\\To-do_app\\To-do_app\\To-do_app.csproj",
+  "projectFilePath": "C:\\Users\\Andriy\\Documents\\GitHub\\Shedule\\To-do_app\\To-do_app.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Андрей\\.nuget\\packages\\litedb\\5.0.16\\litedb.5.0.16.nupkg.sha512"
+    "C:\\Users\\Andriy\\.nuget\\packages\\litedb\\5.0.16\\litedb.5.0.16.nupkg.sha512",
+    "C:\\Users\\Andriy\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\Andriy\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\Andriy\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\Andriy\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.25\\microsoft.netcore.app.host.win-x64.6.0.25.nupkg.sha512"
   ],
   "logs": []
 }
